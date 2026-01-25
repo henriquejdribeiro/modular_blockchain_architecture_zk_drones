@@ -1,0 +1,11 @@
+.env
+.env.*
+node_modules/
+dist/
+__pycache__/
+*.log
+data/
+volumes/
+cairo_dev/drone_contract/
+rethlab/reth/
+starknet_hub/
