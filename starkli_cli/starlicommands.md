@@ -150,10 +150,8 @@ root@15cd394706fa:/app/drone_project# curl -X POST http://host.docker.internal:9
 {"jsonrpc":"2.0","result":{"type":"INVOKE","version":"0x3","account_deployment_data":[],"calldata":["0x1","0x5e6984046d28a33826dd108962f2ee0d938659bc40031cd0142913894b592af","0xfaf1912178443f301638daac13698a9e6e3b73097c0a2771758b339f524128","0x1","0x1"],"fee_data_availability_mode":"L1","nonce":"0x2","nonce_data_availability_mode":"L1","paymaster_data":[],"resource_bounds":{"l1_gas":{"max_amount":"0x0","max_price_per_unit":"0xc0"},"l2_gas":{"max_amount":"0x132180","max_price_per_unit":"0x249f0"},"l1_data_gas":{"max_amount":"0x1b0","max_price_per_unit":"0xc0"}},"sender_address":"0x733a8e2bcced14dcc2608462bd96524fb64eef061689b6d976708efc2c8ddfd","signature":["0x68cee1bc9199163137d443e8617f7a43b56e8c6157bc883ea0150b04bd4f94d","0x40c4dcc68f233ed699154a55209698bace0896c2addfb1b14c908c73e6eb8ca"],"tip":"0x0","transac
 root@15cd394706fa:/app/drone_project# 
 
-# What I can do
+# What it can be done
 Use Madara as a data source, Stone as a prover, and Ethereum as the verifier — not as a rollup, but as a zk-attestation system.
-
-What you DON’T claim: Rollup validity, Proven Madara execution.
 
 Use Madara for execution, zk for statements, Ethereum for verification.
 
