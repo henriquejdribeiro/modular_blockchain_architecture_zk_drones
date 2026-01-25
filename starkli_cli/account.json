@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "variant": {
+    "type": "open_zeppelin",
+    "address": "0x055be462e718c4166d656d11f89e341115b8bc82389c3762a10eade04fcb225d",
+    "chain_id": "madara_devnet_2025"
+  }
+}
+

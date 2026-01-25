@@ -1,0 +1,23 @@
+services:
+  madara:
+    image: ghcr.io/madara-alliance/madara:nightly
+    container_name: madara-node
+    ports:
+      - "9944:9944"   # RPC port
+      - "30333:30333" # P2P port (if needed later)
+    volumes:
+      - ./madara_db:/madara_db
+    command: >
+      --name Madara
+      --devnet
+      --base-path /madara_db
+      --chain-config-override=chain_id=madara_devnet_2025
+      --rpc-external
+      --rpc-cors all
+    networks:
+      - madara-net
+    restart: unless-stopped
+
+networks:
+  madara-net:
+    driver: bridge

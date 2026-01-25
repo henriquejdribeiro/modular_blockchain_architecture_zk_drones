@@ -1,0 +1,23 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    ca-certificates \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install starkliup
+RUN curl -L https://get.starkli.sh | bash
+
+# Install latest starkli (this is the correct command)
+RUN /bin/bash -c "source /root/.starkli/env && starkliup"
+
+# Ensure PATH is correct at runtime
+ENV PATH="/root/.starkli/bin:${PATH}"
+
+WORKDIR /workspace
+
+CMD ["bash"]

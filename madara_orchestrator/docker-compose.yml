@@ -1,0 +1,65 @@
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: madara-orchestrator-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  pathfinder:
+    image: eqlabs/pathfinder:latest
+    container_name: madara-pathfinder
+    ports:
+      - "9545:9545"
+    command: >
+      --network custom
+      --chain-id ${PATHFINDER_CHAIN_ID}
+      --rpc.port 9545
+      --rpc.address 0.0.0.0
+      --storage.state-tries archive
+    volumes:
+      - pathfinder-data:/usr/share/pathfinder/data
+
+  orchestrator:
+  image: prkpandey942/madara-orchestrator:208c37f_paradex_amd
+  container_name: madara-orchestrator
+  depends_on:
+    - mongo
+    - pathfinder
+  env_file:
+    - .env
+  command:
+    - run
+    - --rpc-for-snos
+    - http://host.docker.internal:9944/rpc/v0.8.1
+    - --madara-rpc-url
+    - http://host.docker.internal:9944/rpc/v0.8.1
+    - --madara-version
+    - "0.8.1"
+    - --mongodb-connection-url
+    - mongodb://mongo:27017
+    - --mongodb-database-name
+    - orchestrator
+    - --ethereum-rpc-url
+    - http://host.docker.internal:8545
+    - --ethereum-private-key
+    - 0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+    - --l1-core-contract-address
+    - 0x0000000000000000000000000000000000000000
+    - --starknet-operator-address
+    - 0x0000000000000000000000000000000000000000
+    - --sharp-url
+    - http://mock-prover:6000
+    - --sharp
+    - --settle-on-starknet
+    - --da-on-starknet
+    - --aws
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+
+volumes:
+  mongo-data:
+  pathfinder-data:

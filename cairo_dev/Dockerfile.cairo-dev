@@ -1,0 +1,32 @@
+# Base image
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    python3 \
+    python3-pip \
+    build-essential \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Scarb from official installer (pinned version optional)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | bash -s -- -v 2.15.0
+
+# Ensure a login bash shell can find scarb, cairo, etc.
+SHELL ["/bin/bash", "-lc"]
+
+# Verify installation
+#RUN scarb --version
+
+# Make sure path includes where scarb installs binaries
+ENV PATH="/root/.cargo/bin:/root/.local/bin:${PATH}"
+
+# Directory where you will develop
+WORKDIR /workspace
+
+# Default to bash
+CMD ["bash"]

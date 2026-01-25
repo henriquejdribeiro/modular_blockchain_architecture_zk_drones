@@ -1,0 +1,15 @@
+services:
+  snos:
+    build: .
+    image: snos:local
+    container_name: snos
+    stdin_open: true
+    tty: true
+    volumes:
+      - snos-data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: bash
+
+volumes:
+  snos-data:

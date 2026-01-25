@@ -1,0 +1,34 @@
+services:
+  pathfinder:
+    image: eqlabs/pathfinder:latest
+    container_name: pathfinder
+    user: "0:0"
+
+    command:
+      # Starknet network (must match your SNOS / Madara config)
+      - "--network"
+      - "sepolia-testnet"
+
+      # Ethereum L1 — MUST be WebSocket
+      - "--ethereum.url"
+      - "ws://host.docker.internal:8545"
+
+      # Pathfinder RPC / monitoring
+      - "--monitor-address"
+      - "0.0.0.0:9545"
+
+      # Persistent archive DB
+      - "--data-directory"
+      - "/data"
+
+    ports:
+      - "9545:9545"
+
+    volumes:
+      - pathfinder-data:/data
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  pathfinder-data:

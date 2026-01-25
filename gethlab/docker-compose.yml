@@ -1,0 +1,64 @@
+services:
+
+  node1:
+    image: ethereum/client-go:v1.10.17
+    container_name: geth-node1
+    volumes:
+      - ./data/node1:/data
+      - ./passwords/node1.txt:/password.txt
+    command: >
+      --datadir /data
+      --networkid 1337
+      --http --http.addr 0.0.0.0 --http.api eth,net,web3,personal,clique
+      --http.port 8545
+      --port 30303
+      --mine
+      --miner.etherbase 0x1e86B39f3d3d34caA465604E1Df569072c115Ec5
+      --unlock 0x1e86B39f3d3d34caA465604E1Df569072c115Ec5
+      --password /password.txt
+      --allow-insecure-unlock
+    networks: [gethnet]
+
+  node2:
+    image: ethereum/client-go:v1.10.17
+    container_name: geth-node2
+    volumes:
+      - ./data/node2:/data
+      - ./passwords/node2.txt:/password.txt
+    command: >
+      --datadir /data
+      --networkid 1337
+      --http --http.addr 0.0.0.0 --http.api eth,net,web3,personal,clique
+      --http.port 8546
+      --port 30304
+      --mine
+      --miner.etherbase 0x717F7bB0967387705ccE24546C709193252C6030
+      --unlock 0x717F7bB0967387705ccE24546C709193252C6030
+      --password /password.txt
+      --allow-insecure-unlock
+      --bootnodes enode://e8489426c0c51365b10d2bd801cb5a9a3ee5c8677d9994dbc487598a8b820fb764a6de218945b0d61f48e0450179b8fd77ee3ea9ec226691c763d07612ed0cf0@172.18.0.3:30303
+    networks: [gethnet]
+
+  node3:
+    image: ethereum/client-go:v1.10.17
+    container_name: geth-node3
+    volumes:
+      - ./data/node3:/data
+      - ./passwords/node3.txt:/password.txt
+    command: >
+      --datadir /data
+      --networkid 1337
+      --http --http.addr 0.0.0.0 --http.api eth,net,web3,personal,clique
+      --http.port 8547
+      --port 30305
+      --mine
+      --miner.etherbase 0xFA7fc32f9c75477f515d0f15076EDeD99749a939
+      --unlock 0xFA7fc32f9c75477f515d0f15076EDeD99749a939
+      --password /password.txt
+      --allow-insecure-unlock
+      --bootnodes enode://e8489426c0c51365b10d2bd801cb5a9a3ee5c8677d9994dbc487598a8b820fb764a6de218945b0d61f48e0450179b8fd77ee3ea9ec226691c763d07612ed0cf0@172.18.0.3:30303
+    networks: [gethnet]
+
+networks:
+  gethnet:
+    driver: bridge

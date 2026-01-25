@@ -1,0 +1,30 @@
+services:
+  node1:
+    image: ethereum/client-go:v1.10.17
+    container_name: geth-node1
+    volumes:
+      - ./data/node1:/data
+      - ./passwords/node1.txt:/password.txt
+    command: >
+      --datadir /data
+      --networkid 1337
+      --http --http.addr 0.0.0.0 --http.api eth,net,web3,personal,clique,miner
+      --http.port 8545
+      --http.corsdomain "*"
+      --port 30303
+      --mine
+      --miner.threads 1
+      --miner.etherbase 0x0b71F8a20f6E71EdFa442d165AF55a164167B91c
+      --unlock 0x0b71F8a20f6E71EdFa442d165AF55a164167B91c
+      --password /password.txt
+      --allow-insecure-unlock
+      --nodiscover
+      --maxpeers 0
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+    networks: [gethnet_simple]
+
+networks:
+  gethnet_simple:
+    driver: bridge
