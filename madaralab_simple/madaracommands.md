@@ -153,3 +153,21 @@ madara-node  | [2026-01-12 01:44:04:549] RPC starknet_V0_8_1_getClassHashAt 200 
 madara-node  | [2026-01-12 01:44:04:550] RPC starknet_V0_8_1_getClass 200 8342 bytes - 119.000µs
 madara-node  | [2026-01-12 01:44:04:556] RPC starknet_V0_8_1_call 200 41 bytes - 2.011ms
 madara-node  | [2026-01-12 01:44:12:408] INFO 🙇 Block hash 0x537d6e54d96d1e8eb40fd66350fef7dc71dad78a8e5abaaa5da5c7cbc78a746 computed for #2298
+
+
+# Cairo Contract Deployment Flow 
+1. (Import Account) Using Sncast commands from https://foundry-rs.github.io/starknet-foundry/starknet/account-import.html import an account from the DEVNET PREDEPLOYED CONTRACTS as seen after initializing the Madara Chain, for example:
+
+sncast account import --name hjdr --address 0x0733a8e2bcced14dcc2608462bd96524fb64eef061689b6d976708efc2c8ddfd --private-key 0x00177100ae65c71074126963e695e17adf5b360146f960378b5cdfd9ed69870b --type oz --url http://host.docker.internal:9944/rpc/v0.8.1
+
+2. (Create Signer) Using Starkli commands from https://book.starkli.rs/signers create a signer for this account for the respective predeployed account, for example:
+
+starkli signer keystore from-key devnet_signer.json
+Enter private key: 
+Enter password: 
+Created new encrypted keystore file: /workspace/devnet_signer.json
+Public key: 0x07a3d03f931de9dc9de84a34f385fc609c8822b1a409d2dae5071ad50c1b8b26
+
+3. (Declare Contract)
+
+4. (Deploy Contract)
