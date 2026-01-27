@@ -9,7 +9,7 @@ stark-evm-adapter is a library that provides a set of utilities to parse and man
 
 Once the execution is verified, the input and the output of the program can be registered as a "fact" as on-chain data and can be used by any other smart contracts.
 
-# Command to build the image from Dockerfile recipe:
+## Command to build the image from Dockerfile recipe:
 docker build -t zk-bridge .
 
-# Command to start a container from the image:
+## Command to start a container from the image:
