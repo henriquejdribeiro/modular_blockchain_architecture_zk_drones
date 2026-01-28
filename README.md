@@ -1,17 +1,17 @@
 # System Components 
-
+...
 
 ## Start Ethereum Layer 1 of Geth Nodes 
-
+...
 
 ## Start Starknet Layer 2 of Madara Nodes 
-
+...
 
 ## Associate Predeployed Devnet Account with Signer
-
+...
 
 ## Declare, Deploy and Invoke Contracts on Layer 2
-
+...
 
 
 
