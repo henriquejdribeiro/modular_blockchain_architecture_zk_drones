@@ -1,3 +1,24 @@
+# System Components 
+
+
+## Start Ethereum Layer 1 of Geth Nodes 
+
+
+## Start Starknet Layer 2 of Madara Nodes 
+
+
+## Associate Predeployed Devnet Account with Signer
+
+
+## Declare, Deploy and Invoke Contracts on Layer 2
+
+
+
+
+
+
+
+### Folders 
 cairo_dev -> Cairo Contract declared and deployed on the Madara Lab Chain Simple using Starkli_cli with starkli and sncast commands.  
 
 contracts -> Playground for Solidity and Cairo contracts.
